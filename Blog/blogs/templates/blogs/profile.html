@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Профиль: {{ user.username }}</h1>
+    <h2>Мои записи:</h2>
+    <ul>
+        {% for post in user_posts %}
+            <li>
+                <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+                <small>{{ post.date_added }}</small>
+            </li>
+        {% empty %}
+            <p>У вас ещё нет записей.</p>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'new_post' %}" class="btn btn-success">Создать новую запись</a>
+{% endblock %}
